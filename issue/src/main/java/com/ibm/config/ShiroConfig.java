@@ -22,9 +22,9 @@ public class ShiroConfig {
 		shiroFilterFactoryBean.setSecurityManager(securityManager);
 		Map<String, String> map = new LinkedHashMap<String, String>();
 		map.put("/loginregister/main","authc");
-// 		map.put("/loginregister/userManage", "roles[超级Admin]");
-// 		map.put("/loginregister/createIssue", "perms[普通员工]");
-// 		map.put("/loginregister/issueStatement", "perms[经理]");
+ 		map.put("/loginregister/userManage", "roles[超级Admin]");
+ 		map.put("/loginregister/createIssue", "perms[普通员工]");
+ 		map.put("/loginregister/issueStatement", "perms[经理]");
 		shiroFilterFactoryBean.setLoginUrl("/loginregister/unauth");
 		shiroFilterFactoryBean.setUnauthorizedUrl("/loginregister/unauth");
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
