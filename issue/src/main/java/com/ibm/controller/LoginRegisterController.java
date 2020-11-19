@@ -90,8 +90,11 @@ public class LoginRegisterController {
 			@ApiParam("密码") @RequestParam(value = "password", required = true) String password) {
 		Map<String, Object> result = new HashMap<String, Object>();
 		User userRole = new UserRole();
-		userRole = userService.findByName(name);
-		if (userRole != null) {
+		if (userService.findByUserId(userID) != null) {
+			result.put("status", "用户ID已存在");
+			return result;
+		}
+		if (userService.findByName(name) != null) {
 //			if (userRole.getUserstate().equals("注销")) {
 //				userService.updateUserStateTrue(name);
 //				result.put("status", "用户名本已注销，重新注册成功");
@@ -103,6 +106,7 @@ public class LoginRegisterController {
 			result.put("status", "用户名已存在");
 			return result;
 		}
+
 		userRole.setUserID(userID);
 		userRole.setRoleID(0);
 		userRole.setName(name);

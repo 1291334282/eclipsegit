@@ -38,6 +38,13 @@
 		usertable u,roletable r where name = #{value}
 		and u.roleID=r.roleID
 	</select>
+	<select id="findByUserId" parameterType="int"
+		resultType="com.ibm.entity.User">
+		select
+		*
+		from
+		usertable u where userID = #{userID}
+	</select>
 	<insert id="addUser" parameterType="com.ibm.entity.User">
 		insert into
 		usertable(userID,roleID,name,email,userstate,registertime,password)

@@ -21,6 +21,11 @@ public class UserService {
 		return userMapper.findByName(name);
 	}
 
+	public User findByUserId(int userID) {
+		// TODO Auto-generated method stub
+		return userMapper.findByUserId(userID);
+	}
+
 	public void addUser(User user) {
 		userMapper.addUser(user);
 	}
@@ -36,6 +41,7 @@ public class UserService {
 	public void updateUserState(int userID) {
 		userMapper.updateUserState(userID);
 	}
+
 	public void updateUserStateTrue(String name) {
 		userMapper.updateUserStateTrue(name);
 	}
