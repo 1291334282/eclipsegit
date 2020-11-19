@@ -36,6 +36,7 @@ public class LoginRegisterController {
 	@Autowired
 	private UserService userService;
 
+	@ApiOperation("功能：主页面")
 	@PostMapping("/main")
 	public User main() {
 		return new User();

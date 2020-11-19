@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 该文件存放CRUD的sql语句 -->
+<mapper namespace="com.ibm.mapper.IssueMapper">
+
+	<!-- 统计报表 -->
+	<select id="issueCount" resultType="com.ibm.entity.IssueUser">
+	select
+		u.userID,
+		u.name,
+		sum(i.creater = u.userID) AS creation ,
+		sum(i.userID = u.userID) AS	recived ,
+		sum(i.userID = u.userID and (i.issuestate =	'待解决')) AS resolved,
+		sum(i.creater = u.userID and (i.issuestate = '待解决')) AS closed,
+		ifnull(
+			concat(
+				 round(
+					sum(i.userID = u.userID and (i.issuestate = '待解决'))
+					/
+					sum(i.userID = u.userID)
+					*100),
+			'%')
+	    ,'0%')  AS completion
+	from
+		usertable u,issuetable i
+	WHERE
+		u.roleID = 0
+	GROUP BY
+		u.userID
+	</select>
+
+	<!-- 报表查询 IdOrName -->
+	<select id="issueIdOrName"
+		parameterType="com.ibm.entity.IssueUser"
+		resultType="com.ibm.entity.IssueUser">
+		
+		select
+		(@mycnt := @mycnt + 1) as row ,
+		u.userID,
+		u.name,
+		sum(i.creater = u.userID ) AS creation ,
+		sum(i.userID = u.userID ) AS recived ,
+		sum(i.userID =u.userID and
+		(i.issuestate = '待解决') ) AS resolved ,
+		sum(i.creater = u.userID and
+		(i.issuestate = '待解决') )AS closed ,
+		ifnull(
+			concat(
+				 round(
+					sum(i.userID = u.userID and (i.issuestate = '待解决'))
+					/
+					sum(i.userID = u.userID)
+					*100),
+			'%')
+	    ,'0%')  AS completion
+		from
+		usertable u,issuetable i
+		<where>
+			<if test="userID != null and userID !=''">
+				AND u.userID = #{userID}
+			</if>
+			<if test="name != null and name !=''">
+				AND u.name LIKE '%' #{name} '%'
+			</if>
+			AND u.roleID = 0
+		</where>
+		GROUP BY u.userID
+
+	</select>
+
+
+</mapper>

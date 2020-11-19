@@ -10,6 +10,7 @@ spring:
 mybatis:
   type-aliases-package: com.ibm.entity  
   mapper-locations: classpath:mapper/*.xml
+
 #pagehelper:
 #    helperDialect: mysql
 #    reasonable: true
