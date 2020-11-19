@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 该文件存放CRUD的sql语句 -->
+<mapper namespace="com.ibm.mapper.UserRoleMapper">
+
+	<select id="findIdOrName"
+		parameterType="com.ibm.entity.UserRole"
+		resultType="com.ibm.entity.UserRole">
+		select
+		u.userID,u.name,u.email,u.registertime,r.role,u.userstate
+		from
+		usertable u,roletable r
+		<where>
+			<if test="userID != null and userID !=''">
+				AND userID = #{userID}
+			</if>
+			<if test="name != null and name !=''">
+				AND name LIKE '%' #{name} '%'
+			</if>
+			AND u.roleID=r.roleID
+		</where>
+
+	</select>
+	<select id="findAll" resultType="com.ibm.entity.UserRole">
+		select
+		u.userID,u.name,u.email,u.registertime,r.role,u.userstate
+		from
+		usertable u,roletable r where
+		u.roleID=r.roleID
+	</select>
+	<select id="findByName" parameterType="string"
+		resultType="com.ibm.entity.UserRole">
+		select
+		*
+		from
+		usertable u,roletable r where name = #{value}
+		and u.roleID=r.roleID
+	</select>
+	<insert id="addUser" parameterType="com.ibm.entity.User">
+		insert into
+		usertable(userID,roleID,name,email,userstate,registertime,password)
+		values(#{userID},#{roleID},#{name},#{email},#{userstate},#{registertime},#{password})
+	</insert>
+	<update id="updateUser" parameterType="com.ibm.entity.User">
+		update usertable
+		<trim prefix="set" suffixOverrides=",">
+			<if test="name!=null and name!=''">name=#{name},</if>
+			<if test="email!=null and email!=''">email=#{email},</if>
+			<if test="password!=null and password!=''">password=#{password},</if>
+		</trim>
+		where userID=#{userID}
+	</update>
+	<update id="updateRole" parameterType="int">
+		update usertable set
+		roleID=1
+		where userID=#{userID}
+	</update>
+	<update id="updateUserState" parameterType="int">
+		update usertable set
+		userState="注销"
+		where userID=#{userID}
+	</update>
+	<update id="updateUserStateTrue" parameterType="String">
+		update usertable set
+		userState="激活"
+		where name=#{name}
+	</update>
+</mapper>
