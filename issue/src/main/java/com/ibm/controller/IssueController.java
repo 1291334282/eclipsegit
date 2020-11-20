@@ -37,8 +37,8 @@ public class IssueController {
 
 	@ApiOperation("功能：查看报表")
 	@GetMapping("issuecount")
-	public List<Issue> issueCount() {
-		PageHelper.startPage(1, 20);	
+	public List<Issue> issueCount(int pageNum, int pageSize) {
+		PageHelper.startPage(pageNum,pageSize);	
 		PageInfo<Issue> pageInfo = new PageInfo<Issue>(issueService.issueCount());
 //		if (pageInfo.getList().isEmpty()) {
 //			model.addAttribute("selectmsg", "查询不到");
@@ -48,8 +48,8 @@ public class IssueController {
 	
 	@ApiOperation("功能：查询用户id或名字的issue")
 	@GetMapping("issuebyidorname")
-	public List<IssueUser> issueIdOrName( @ApiParam("issue对象") IssueUser issue) {
-		PageHelper.startPage(1, 20);
+	public List<IssueUser> issueIdOrName(int pageNum, int pageSize, @ApiParam("issue对象") IssueUser issue) {
+		PageHelper.startPage(pageNum,pageSize);
 		PageInfo<IssueUser> pageInfo = new PageInfo<IssueUser>(issueService.issueIdOrName(issue));
 //		if (pageInfo.getList().isEmpty()) {
 //			model.addAttribute("selectmsg", "查询不到");

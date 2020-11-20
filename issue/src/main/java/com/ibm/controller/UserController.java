@@ -44,6 +44,10 @@ public class UserController {
 	@PostMapping("/updaterole")
 	public Map<String, Object> updateRole(int userID) {
 		Map<String, Object> result = new HashMap<String, Object>();
+		if (userService.findByUserId(userID).getUserstate().equals("注销")) {
+			result.put("status", "用户名已被注销，不能修改为经理");
+			return result;
+		}
 		userService.updateRole(userID);
 		result.put("status", "修改为经理成功");
 		return result;
