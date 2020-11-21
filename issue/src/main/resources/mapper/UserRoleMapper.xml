@@ -70,7 +70,8 @@
 		where userID=#{userID}
 	</update>
 	<update id="updateUserStateTrue" parameterType="String">
-		update usertable set
+		update usertable
+		set
 		userState="激活"
 		where name=#{name}
 	</update>
