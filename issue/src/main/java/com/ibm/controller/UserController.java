@@ -84,4 +84,13 @@ public class UserController {
 		return pageInfo.getList();
 	}
 
+	@ApiOperation("功能：查询用户类条数")
+	@GetMapping("selectallusernumber")
+	public Map<String, Integer> selectAllUserNumber() {
+		Map<String, Integer> map=new HashMap<String, Integer>();
+		map.put("查询所有用户信息条数", userService.findAll().size());
+		
+		return map;
+	}
+
 }
