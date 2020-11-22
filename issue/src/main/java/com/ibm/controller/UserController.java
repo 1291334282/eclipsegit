@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.ibm.entity.ReturnValue;
 import com.ibm.entity.User;
 import com.ibm.entity.UserRole;
 import com.ibm.service.UserService;
@@ -75,8 +77,9 @@ public class UserController {
 
 	@ApiOperation("功能：模糊查询用户id或名字")
 	@GetMapping("selectidorname")
-	public PageInfo<UserRole> selectIdOrName(int pageNum, int pageSize, @ApiParam("用户类对象") UserRole userRole, Model model) {
-		PageHelper.startPage(pageNum, pageSize);	
+	public PageInfo<UserRole> selectIdOrName(int pageNum, int pageSize, @ApiParam("用户类对象") UserRole userRole,
+			Model model) {
+		PageHelper.startPage(pageNum, pageSize);
 		PageInfo<UserRole> pageInfo = new PageInfo<UserRole>(userService.findIdOrName(userRole));
 //		if (pageInfo.getList().isEmpty()) {
 //			model.addAttribute("selectmsg", "查询不到");
@@ -84,4 +87,15 @@ public class UserController {
 		return pageInfo;
 	}
 
+//	@GetMapping("/getItemNotes")
+//	@ApiOperation(value = "获取事项各要素的数量")
+//	public ReturnValue getItemNotes(UserRole userRole) {
+//		List<UserRole> json;
+//
+//		json = this.userService.findIdOrName(userRole);
+//		if (json.isEmpty()) {
+//			return ReturnValue.fail("无法查询到数据");
+//		}
+//		return ReturnValue.ok(json,"查询成功","1");
+//	}
 }
