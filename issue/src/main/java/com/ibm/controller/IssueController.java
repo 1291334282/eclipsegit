@@ -43,24 +43,24 @@ public class IssueController {
 
 	@ApiOperation("功能：查看报表")
 	@GetMapping("/selectissuecount")
-	public List<Issue> issueCount(int pageNum, int pageSize) {
+	public PageInfo<Issue> issueCount(int pageNum, int pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
 		PageInfo<Issue> pageInfo = new PageInfo<Issue>(issueService.issueCount());
 //		if (pageInfo.getList().isEmpty()) {
 //			model.addAttribute("selectmsg", "查询不到");
 //		}
-		return pageInfo.getList();
+		return pageInfo;
 	}
 
 	@ApiOperation("功能：查询用户id或名字的issue")
 	@GetMapping("/selectissuebyidorname")
-	public List<IssueUser> issueIdOrName(int pageNum, int pageSize, @ApiParam("issue对象") IssueUser issue) {
+	public PageInfo<IssueUser> issueIdOrName(int pageNum, int pageSize, @ApiParam("issue对象") IssueUser issue) {
 		PageHelper.startPage(pageNum, pageSize);
 		PageInfo<IssueUser> pageInfo = new PageInfo<IssueUser>(issueService.issueIdOrName(issue));
 //		if (pageInfo.getList().isEmpty()) {
 //			model.addAttribute("selectmsg", "查询不到");
 //		}
-		return pageInfo.getList();
+		return pageInfo;
 	}
 
 	@ApiOperation("功能：创建issue")
@@ -108,18 +108,18 @@ public class IssueController {
 
 	@ApiOperation("功能：显示登录用户issue任务")
 	@GetMapping("/selectIssuetask")
-	public List<IssueUser> issueTask(int pageNum, int pageSize, int userID) {
+	public PageInfo<IssueUser> issueTask(int pageNum, int pageSize, int userID) {
 		PageHelper.startPage(pageNum, pageSize);
 		PageInfo<IssueUser> pageInfo = new PageInfo<IssueUser>(issueService.findIssuetask(userID));
-		return pageInfo.getList();
+		return pageInfo;
 	}
 
 	@ApiOperation("功能：模糊查询issue表")
 	@GetMapping("/selectLikeIssue")
-	public List<IssueUser> findLikeIssue(int pageNum, int pageSize, @ApiParam("用户类对象") IssueUser issueUser) {
+	public PageInfo<IssueUser> findLikeIssue(int pageNum, int pageSize, @ApiParam("用户类对象") IssueUser issueUser) {
 		PageHelper.startPage(pageNum, pageSize);
 		PageInfo<IssueUser> pageInfo = new PageInfo<IssueUser>(issueService.findLikeIssue(issueUser));
-		return pageInfo.getList();
+		return pageInfo;
 	}
 
 	@ApiOperation("功能：修改issue信息")

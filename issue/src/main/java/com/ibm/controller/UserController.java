@@ -64,33 +64,24 @@ public class UserController {
 
 	@ApiOperation("功能：查询所有用户信息")
 	@GetMapping("selectalluser")
-	public List<UserRole> selectAllUser(int pageNum, int pageSize) {
+	public PageInfo<UserRole> selectAllUser(int pageNum, int pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
 		PageInfo<UserRole> pageInfo = new PageInfo<UserRole>(userService.findAll());
 //		if (pageInfo.getList().isEmpty()) {
 //			model.addAttribute("selectmsg", "查询不到");
 //		}
-		return pageInfo.getList();
+		return pageInfo;
 	}
 
 	@ApiOperation("功能：模糊查询用户id或名字")
 	@GetMapping("selectidorname")
-	public List<UserRole> selectIdOrName(int pageNum, int pageSize, @ApiParam("用户类对象") UserRole userRole, Model model) {
-		PageHelper.startPage(pageNum, pageSize);
+	public PageInfo<UserRole> selectIdOrName(int pageNum, int pageSize, @ApiParam("用户类对象") UserRole userRole, Model model) {
+		PageHelper.startPage(pageNum, pageSize);	
 		PageInfo<UserRole> pageInfo = new PageInfo<UserRole>(userService.findIdOrName(userRole));
 //		if (pageInfo.getList().isEmpty()) {
 //			model.addAttribute("selectmsg", "查询不到");
 //		}
-		return pageInfo.getList();
-	}
-
-	@ApiOperation("功能：查询用户类条数")
-	@GetMapping("selectallusernumber")
-	public Map<String, Integer> selectAllUserNumber() {
-		Map<String, Integer> map=new HashMap<String, Integer>();
-		map.put("查询所有用户信息条数", userService.findAll().size());
-		
-		return map;
+		return pageInfo;
 	}
 
 }
