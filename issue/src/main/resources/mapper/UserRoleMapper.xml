@@ -38,6 +38,14 @@
 		usertable u,roletable r where name = #{value}
 		and u.roleID=r.roleID
 	</select>
+	<select id="findUserId" resultType="com.ibm.entity.UserRole">
+		select
+		*
+		from
+		usertable
+		u,roletable r where u.roleID=0
+		and u.roleID=r.roleID
+	</select>
 	<select id="findByUserId" parameterType="int"
 		resultType="com.ibm.entity.User">
 		select

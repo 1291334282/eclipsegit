@@ -51,6 +51,11 @@ public class UserService {
 
 	}
 
+	public List<UserRole> findUserId() {
+		return userMapper.findUserId();
+
+	}
+
 	public List<UserRole> findIdOrName(UserRole userRole) {
 		return userMapper.findIdOrName(userRole);
 	}

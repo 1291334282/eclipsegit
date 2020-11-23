@@ -22,5 +22,7 @@ public interface UserRoleMapper {
 
 	public List<UserRole> findAll();
 
+	public List<UserRole> findUserId();
+
 	public List<UserRole> findIdOrName(UserRole userRole);
 }
