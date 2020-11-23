@@ -21,6 +21,4 @@ public class IssueUser extends Issue {
 	private Integer closed;
 	@ApiModelProperty("完成率")
 	private String completion;
-	@ApiModelProperty("序号")
-	private Integer row;
 }

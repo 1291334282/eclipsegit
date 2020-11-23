@@ -10,17 +10,17 @@
 		select
 		u.userID,
 		u.name,
-		sum(i.creater = u.userID) AS creation ,
+		sum(i.creater = u.name) AS creation ,
 		sum(i.userID =
 		u.userID) AS recived ,
 		sum(i.userID = u.userID and (i.issuestate =
-		'待解决')) AS resolved,
-		sum(i.creater = u.userID and (i.issuestate =
-		'待解决')) AS closed,
+		'待验证')) AS resolved,
+		sum(i.creater = u.name and (i.issuestate =
+		'已关闭')) AS closed,
 		ifnull(
 		concat(
 		round(
-		sum(i.userID = u.userID and (i.issuestate = '待解决'))
+		sum(i.userID = u.userID and (i.issuestate = '待验证'))
 		/
 		sum(i.userID = u.userID)
 		*100),
@@ -40,20 +40,19 @@
 		resultType="com.ibm.entity.IssueUser">
 
 		select
-		(@mycnt := @mycnt + 1) as row ,
 		u.userID,
 		u.name,
 		sum(i.creater =
-		u.userID ) AS creation ,
+		u.name ) AS creation ,
 		sum(i.userID = u.userID ) AS recived ,
 		sum(i.userID =u.userID and
-		(i.issuestate = '待解决') ) AS resolved ,
-		sum(i.creater = u.userID and
-		(i.issuestate = '待解决') )AS closed ,
+		(i.issuestate = '待验证') ) AS resolved ,
+		sum(i.creater = u.name and
+		(i.issuestate = '已关闭') )AS closed ,
 		ifnull(
 		concat(
 		round(
-		sum(i.userID = u.userID and (i.issuestate = '待解决'))
+		sum(i.userID = u.userID and (i.issuestate = '待验证'))
 		/
 		sum(i.userID = u.userID)
 		*100),
