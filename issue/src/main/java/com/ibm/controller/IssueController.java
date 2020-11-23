@@ -70,7 +70,7 @@ public class IssueController {
 			@ApiParam("Issue等级") @RequestParam(value = "level", required = true) String level,
 			@ApiParam("影响版本") @RequestParam(value = "version", required = true) String version,
 			@ApiParam("创建人") @RequestParam(value = "creater", required = true) String creater,
-			@ApiParam("计划修改完成时间") @RequestParam(value = "plantime", required = true) Date plantime,
+			@ApiParam("计划修改完成时间") @RequestParam(value = "plantime", required = true) String plantime,
 //			@ApiParam("实际完成时间") @RequestParam(value = "acttime", required = true) Timestamp acttime,
 			@ApiParam("重现步骤") @RequestParam(value = "step", required = true) String step,
 //			@ApiParam("解决方案") @RequestParam(value = "solution", required = true) String solution,

@@ -20,9 +20,11 @@ public class Issue {
 	@ApiModelProperty("Issue.No")
 	private Integer issueID;
 	@ApiModelProperty("创建时间")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Date createtime;
+	private String createtime;
+
+	@ApiModelProperty("到创建时间1") // 时间查询需用
+	private String createtime1;
+
 	@ApiModelProperty("Issue类型")
 	private String type;
 	@ApiModelProperty("Issue等级")
@@ -30,13 +32,13 @@ public class Issue {
 	@ApiModelProperty("影响版本")
 	private String version;
 	@ApiModelProperty("计划修改完成时间")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Date plantime;
+	private String plantime;
+
+	@ApiModelProperty("到计划修改完成时间1") // 时间查询需用
+	private String plantime1;
+
 	@ApiModelProperty("实际完成时间")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Date acttime;
+	private String acttime;
 	@ApiModelProperty("重现步骤")
 	private String step;
 	@ApiModelProperty("指派修改人ID")
@@ -48,6 +50,6 @@ public class Issue {
 	private String issuestate;
 	@ApiModelProperty("解决方案")
 	private String solution;
-	
-//	private User user;//用于封装User信息
+	// ---------------------------
+
 }
