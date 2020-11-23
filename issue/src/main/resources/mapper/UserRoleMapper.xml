@@ -35,7 +35,7 @@
 		select
 		*
 		from
-		usertable u,roletable r where name = #{value}
+		usertable u,roletable r where BINARY name = #{value}
 		and u.roleID=r.roleID
 	</select>
 	<select id="findUserId" resultType="com.ibm.entity.UserRole">
