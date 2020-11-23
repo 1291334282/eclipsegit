@@ -121,6 +121,13 @@ public class IssueController {
 		PageInfo<IssueUser> pageInfo = new PageInfo<IssueUser>(issueService.findLikeIssue(issueUser));
 		return pageInfo;
 	}
+	@ApiOperation("功能：查询issue表全部")
+	@GetMapping("/selectIssueAll")
+	public PageInfo<Issue> findIssueAll(int pageNum, int pageSize) {
+		PageHelper.startPage(pageNum, pageSize);
+		PageInfo<Issue> pageInfo = new PageInfo<Issue>(issueService.findIssueAll());
+		return pageInfo;
+	}
 
 	@ApiOperation("功能：修改issue信息")
 	@PostMapping("/updateIssue")

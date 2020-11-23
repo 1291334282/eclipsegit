@@ -14,14 +14,15 @@ import com.ibm.mapper.IssueMapper;
 public class IssueService {
 	@Autowired
 	IssueMapper issueMapper;
+
 	public List<Issue> issueCount() {
 		return issueMapper.issueCount();
 	}
 
-	public List<IssueUser> issueIdOrName(IssueUser issueUser){
+	public List<IssueUser> issueIdOrName(IssueUser issueUser) {
 		return issueMapper.issueIdOrName(issueUser);
 	}
-	
+
 	public void addIssue(Issue issue) {
 		issueMapper.addIssue(issue);
 	}
@@ -52,5 +53,9 @@ public class IssueService {
 	// issue创建人需验证修改：状态issuestate
 	public void UpdateIssueState(Issue issue) {
 		issueMapper.UpdateIssueState(issue);
+	}
+
+	public List<Issue> findIssueAll() {
+		return issueMapper.findIssueAll();
 	}
 }

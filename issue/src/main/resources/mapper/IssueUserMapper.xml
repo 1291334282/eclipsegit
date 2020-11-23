@@ -12,15 +12,18 @@
 		u.name,
 		sum(i.creater = u.name) AS creation ,
 		sum(i.userID =
-		u.userID) AS recived ,
+		u.userID) AS
+		recived ,
 		sum(i.userID = u.userID and (i.issuestate =
-		'待验证')) AS resolved,
+		'待验证')) AS
+		resolved,
 		sum(i.creater = u.name and (i.issuestate =
 		'已关闭')) AS closed,
 		ifnull(
 		concat(
 		round(
-		sum(i.userID = u.userID and (i.issuestate = '待验证'))
+		sum(i.userID = u.userID and (i.issuestate =
+		'待验证'))
 		/
 		sum(i.userID = u.userID)
 		*100),
@@ -52,7 +55,8 @@
 		ifnull(
 		concat(
 		round(
-		sum(i.userID = u.userID and (i.issuestate = '待验证'))
+		sum(i.userID =
+		u.userID and (i.issuestate = '待验证'))
 		/
 		sum(i.userID = u.userID)
 		*100),
@@ -97,7 +101,12 @@
 		issuetable.userID=#{userID}
 		ORDER BY createtime DESC
 	</select>
-
+	<select id="findIssueAll" resultType="com.ibm.entity.Issue">
+		select
+		*
+		from
+		issuetable
+	</select>
 	<!-- issue模糊查询 -->
 	<select id="findLikeIssue"
 		parameterType="com.ibm.entity.IssueUser"
@@ -119,14 +128,9 @@
 			<if test="name != null and name !=''">
 				AND name LIKE '%' #{name} '%'
 			</if>
-			<!-- <if test="createtime!= null">
-				AND createtime <![CDATA[>=]]>
-				#{createtime}
-			</if>
-			<if test="plantime != null">
-				AND plantime <![CDATA[>=]]>
-				#{plantime}
-			</if> -->
+			<!-- <if test="createtime!= null"> AND createtime <![CDATA[>=]]> #{createtime} 
+				</if> <if test="plantime != null"> AND plantime <![CDATA[>=]]> #{plantime} 
+				</if> -->
 			AND is1.userID=usertable.userID
 		</where>
 		ORDER BY is1.issueID DESC
@@ -145,7 +149,8 @@
 		parameterType="com.ibm.entity.Issue">
 		UPDATE issuetable
 		SET solution=#{solution}
-		WHERE userID=#{userID} AND issueID=#{issueID}
+		WHERE
+		userID=#{userID} AND issueID=#{issueID}
 	</update>
 
 	<!-- issue修改：修改state -->
@@ -153,6 +158,7 @@
 		parameterType="com.ibm.entity.Issue">
 		UPDATE issuetable
 		SET issuestate=#{issuestate}
-		WHERE userID=#{userID} AND issueID=#{issueID}
+		WHERE
+		userID=#{userID} AND issueID=#{issueID}
 	</update>
 </mapper>
