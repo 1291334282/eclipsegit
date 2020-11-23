@@ -76,8 +76,8 @@ public class UserController {
 	}
 	@ApiOperation("功能：查询角色为普通员工的用户id")
 	@GetMapping("selectuserID")
-	public PageInfo<UserRole> selectUserID(int pageNum, int pageSize) {
-		PageHelper.startPage(pageNum, pageSize);
+	public PageInfo<UserRole> selectUserID() {
+		PageHelper.startPage(1, 100);
 		PageInfo<UserRole> pageInfo = new PageInfo<UserRole>(userService.findUserId());
 //		if (pageInfo.getList().isEmpty()) {
 //			model.addAttribute("selectmsg", "查询不到");
