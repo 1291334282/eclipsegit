@@ -168,4 +168,12 @@ public class IssueController {
 		result.put("status", "修改成功");
 		return result;
 	}
+	
+	@ApiOperation("功能：显示登录用户创建的issue")
+	@GetMapping("/findCreateIssue")
+	public PageInfo<IssueUser> findCreateIssue(int pageNum, int pageSize, String creater) {
+		PageHelper.startPage(pageNum, pageSize);
+		PageInfo<IssueUser> pageInfo = new PageInfo<IssueUser>(issueService.findCreateIssue(creater));
+		return pageInfo;
+	}
 }

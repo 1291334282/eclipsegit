@@ -175,4 +175,13 @@
 		WHERE
 		userID=#{userID} AND issueID=#{issueID}
 	</update>
+	
+	<select id="findCreateIssue" parameterType="String"
+		resultType="com.ibm.entity.IssueUser">
+	SELECT
+	issueID,title,creater,createtime,`name`,issuestate,plantime,acttime
+	FROM issuetable,usertable
+	WHERE issuetable.userID=usertable.userID AND creater=#{creater}
+	ORDER BY createtime DESC
+	</select>
 </mapper>

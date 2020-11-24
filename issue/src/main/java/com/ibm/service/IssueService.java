@@ -58,4 +58,9 @@ public class IssueService {
 	public List<IssueUser> findIssueAll() {
 		return issueMapper.findIssueAll();
 	}
+	
+	// issue查询登录用户的创建issue
+	public List<IssueUser> findCreateIssue(String creater) {
+		return issueMapper.findCreateIssue(creater);
+	}
 }

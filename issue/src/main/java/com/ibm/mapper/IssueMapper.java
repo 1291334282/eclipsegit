@@ -32,4 +32,6 @@ public interface IssueMapper {
 
 	// issue创建人需验证修改：状态issuestate
 	public void UpdateIssueState(Issue issue);
+	// issue查询登录用户的创建issue
+	public List<IssueUser> findCreateIssue(String creater);
 }
