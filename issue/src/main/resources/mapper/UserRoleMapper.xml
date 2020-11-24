@@ -77,10 +77,10 @@
 		userState="注销"
 		where userID=#{userID}
 	</update>
-	<update id="updateUserStateTrue" parameterType="String">
+	<update id="updateUserStateTrue" parameterType="int">
 		update usertable
 		set
 		userState="激活"
-		where name=#{name}
+		where userID=#{userID}
 	</update>
 </mapper>

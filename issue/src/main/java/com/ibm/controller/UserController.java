@@ -64,6 +64,15 @@ public class UserController {
 		return result;
 	}
 
+	@ApiOperation("功能：修改状态为激活")
+	@PostMapping("/updateuserstatetrue")
+	public Map<String, Object> updateUserStateTrue(int userID) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		userService.updateUserStateTrue(userID);
+		result.put("status", "修改状态为激活成功");
+		return result;
+	}
+
 	@ApiOperation("功能：查询所有用户信息")
 	@GetMapping("selectalluser")
 	public PageInfo<UserRole> selectAllUser(int pageNum, int pageSize) {
@@ -74,6 +83,7 @@ public class UserController {
 //		}
 		return pageInfo;
 	}
+
 	@ApiOperation("功能：查询角色为普通员工的用户id")
 	@GetMapping("selectuserID")
 	public PageInfo<UserRole> selectUserID() {

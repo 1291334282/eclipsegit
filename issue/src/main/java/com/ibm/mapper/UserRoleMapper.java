@@ -18,7 +18,7 @@ public interface UserRoleMapper {
 
 	public void updateUserState(int userID);
 
-	public void updateUserStateTrue(String name);
+	public void updateUserStateTrue(int userID);
 
 	public List<UserRole> findAll();
 

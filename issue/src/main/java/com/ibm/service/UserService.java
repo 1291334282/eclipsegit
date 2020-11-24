@@ -42,8 +42,8 @@ public class UserService {
 		userMapper.updateUserState(userID);
 	}
 
-	public void updateUserStateTrue(String name) {
-		userMapper.updateUserStateTrue(name);
+	public void updateUserStateTrue(int userID) {
+		userMapper.updateUserStateTrue(userID);
 	}
 
 	public List<UserRole> findAll() {
