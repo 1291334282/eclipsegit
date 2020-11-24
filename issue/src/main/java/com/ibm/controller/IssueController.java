@@ -91,7 +91,7 @@ public class IssueController {
 		}
 		// -----------------------
 		issue.setCreater(creater);
-		issue.setIssuestate("待解决");
+		issue.setIssuestate("待修改");
 		issue.setSolution(null);
 		issueService.addIssue(issue);
 		result.put("status", "创建成功");
