@@ -184,4 +184,37 @@
 	WHERE issuetable.userID=usertable.userID AND creater=#{creater}
 	ORDER BY createtime DESC
 	</select>
+	
+	<!-- issue模糊查询:登录用户的issue任务 -->
+	<select id="findLikeNewIssue" parameterType="com.ibm.entity.IssueUser"
+		resultType="com.ibm.entity.IssueUser">
+		SELECT 
+		is1.issueID,is1.title,is1.creater,is1.createtime,usertable.name,is1.issuestate,is1.plantime,is1.acttime
+		FROM (SELECT * FROM issuetable WHERE creater=#{creater}) AS is1,usertable
+		<where>
+			<if test="issueID != null and issueID !=''">
+				AND issueID = #{issueID}
+			</if>
+			<if test="issuestate != null and issuestate !=''">
+				AND issuestate LIKE '%' #{issuestate} '%'
+			</if>
+			<if test="name != null and name !=''">
+				AND name LIKE '%' #{name} '%'
+			</if>
+			<if test="createtime!= null and createtime !=''">
+				AND createtime <![CDATA[>=]]> #{createtime}
+			</if>
+			<if test="createtime1 != null and createtime1 !=''">
+				AND createtime <![CDATA[<=]]> #{createtime1}
+			</if>
+			<if test="plantime != null and plantime !=''">
+				AND plantime <![CDATA[>=]]> #{plantime}
+			</if>
+			<if test="plantime1 != null and plantime1 !=''">
+				AND plantime <![CDATA[<=]]> #{plantime1}
+			</if>
+			AND is1.userID=usertable.userID
+		</where>
+		ORDER BY is1.issueID DESC
+	</select>
 </mapper>

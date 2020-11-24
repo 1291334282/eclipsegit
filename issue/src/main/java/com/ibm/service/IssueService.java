@@ -63,4 +63,9 @@ public class IssueService {
 	public List<IssueUser> findCreateIssue(String creater) {
 		return issueMapper.findCreateIssue(creater);
 	}
+	
+	// issue模糊查询:登录用户的新建issue
+	public List<IssueUser> findLikeNewIssue(IssueUser issueUser) {
+		return issueMapper.findLikeNewIssue(issueUser);
+	}
 }

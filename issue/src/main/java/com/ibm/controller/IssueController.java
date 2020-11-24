@@ -176,4 +176,12 @@ public class IssueController {
 		PageInfo<IssueUser> pageInfo = new PageInfo<IssueUser>(issueService.findCreateIssue(creater));
 		return pageInfo;
 	}
+	
+	@ApiOperation("功能：模糊查询登录用户的新建issue")
+	@GetMapping("/findLikeNewIssue")
+	public PageInfo<IssueUser> findLikeNewIssue(int pageNum, int pageSize, @ApiParam("用户类对象") IssueUser issueUser) {
+		PageHelper.startPage(pageNum, pageSize);
+		PageInfo<IssueUser> pageInfo = new PageInfo<IssueUser>(issueService.findLikeNewIssue(issueUser));
+		return pageInfo;
+	}
 }

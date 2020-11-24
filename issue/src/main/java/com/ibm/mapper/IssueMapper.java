@@ -34,4 +34,7 @@ public interface IssueMapper {
 	public void UpdateIssueState(Issue issue);
 	// issue查询登录用户的创建issue
 	public List<IssueUser> findCreateIssue(String creater);
+	
+	// issue模糊查询:登录用户的新建issue
+	public List<IssueUser> findLikeNewIssue(IssueUser issueUser);
 }
