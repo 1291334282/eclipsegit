@@ -22,7 +22,7 @@ public interface IssueMapper {
 	// issue模糊查询
 	public List<IssueUser> findLikeIssue(IssueUser issueUser);
 
-	public List<Issue> findIssueAll();
+	public List<IssueUser> findIssueAll();
 
 	// issue修改
 	public void UpdateIssue(Issue issue);

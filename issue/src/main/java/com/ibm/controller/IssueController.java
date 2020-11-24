@@ -123,9 +123,9 @@ public class IssueController {
 	}
 	@ApiOperation("功能：查询issue表全部")
 	@GetMapping("/selectIssueAll")
-	public PageInfo<Issue> findIssueAll(int pageNum, int pageSize) {
+	public PageInfo<IssueUser> findIssueAll(int pageNum, int pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
-		PageInfo<Issue> pageInfo = new PageInfo<Issue>(issueService.findIssueAll());
+		PageInfo<IssueUser> pageInfo = new PageInfo<IssueUser>(issueService.findIssueAll());
 		return pageInfo;
 	}
 

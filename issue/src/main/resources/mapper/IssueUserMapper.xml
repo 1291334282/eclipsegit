@@ -101,17 +101,20 @@
 		issuetable.userID=#{userID}
 		ORDER BY createtime DESC
 	</select>
-	<select id="findIssueAll" resultType="com.ibm.entity.Issue">
+	<select id="findIssueAll" resultType="com.ibm.entity.IssueUser">
 		select
 		*
 		from
 		issuetable
+		i,usertable u where i.userID=u.userID
 	</select>
-	<select id="findLikeIssue" parameterType="com.ibm.entity.IssueUser"
+	<select id="findLikeIssue"
+		parameterType="com.ibm.entity.IssueUser"
 		resultType="com.ibm.entity.IssueUser">
-		SELECT 
+		SELECT
 		is1.issueID,is1.title,is1.creater,is1.createtime,usertable.name,is1.issuestate,is1.plantime,is1.acttime
-		FROM (SELECT * FROM issuetable WHERE userID=#{userID}) AS is1,usertable
+		FROM (SELECT * FROM issuetable WHERE userID=#{userID}) AS
+		is1,usertable
 		<where>
 			<if test="issueID != null and issueID !=''">
 				AND issueID = #{issueID}
@@ -126,16 +129,20 @@
 				AND name LIKE '%' #{name} '%'
 			</if>
 			<if test="createtime!= null and createtime !=''">
-				AND createtime <![CDATA[>=]]> #{createtime}
+				AND createtime <![CDATA[>=]]>
+				#{createtime}
 			</if>
 			<if test="createtime1 != null and createtime1 !=''">
-				AND createtime <![CDATA[<=]]> #{createtime1}
+				AND createtime <![CDATA[<=]]>
+				#{createtime1}
 			</if>
 			<if test="plantime != null and plantime !=''">
-				AND plantime <![CDATA[>=]]> #{plantime}
+				AND plantime <![CDATA[>=]]>
+				#{plantime}
 			</if>
 			<if test="plantime1 != null and plantime1 !=''">
-				AND plantime <![CDATA[<=]]> #{plantime1}
+				AND plantime <![CDATA[<=]]>
+				#{plantime1}
 			</if>
 			AND is1.userID=usertable.userID
 		</where>

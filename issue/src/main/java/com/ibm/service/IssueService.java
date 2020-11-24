@@ -55,7 +55,7 @@ public class IssueService {
 		issueMapper.UpdateIssueState(issue);
 	}
 
-	public List<Issue> findIssueAll() {
+	public List<IssueUser> findIssueAll() {
 		return issueMapper.findIssueAll();
 	}
 }
