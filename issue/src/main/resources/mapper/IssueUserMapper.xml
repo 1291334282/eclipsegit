@@ -98,7 +98,7 @@
 		issueID,title,creater,createtime,usertable.name,issuestate,plantime,acttime
 		FROM issuetable,usertable
 		WHERE issuetable.userID=usertable.userID AND
-		issuetable.userID=#{userID} OR usertable.userID=#{userID}
+		issuetable.userID=#{userID}
 		ORDER BY
 		createtime DESC
 	</select>
