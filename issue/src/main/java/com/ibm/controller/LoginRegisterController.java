@@ -50,6 +50,10 @@ public class LoginRegisterController {
 		UsernamePasswordToken token = new UsernamePasswordToken(name, password);
 		Map<String, Object> result = new HashMap<String, Object>();
 		try {
+			if (userService.findByName(name).getUserstate().equals("注销")) {
+				result.put("status", "用户已注销");
+				return result;
+			}
 			subject.login(token);
 			result.put("status", "登陆成功");
 			result.put("name", name);
