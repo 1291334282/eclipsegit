@@ -1,5 +1,8 @@
 server:
   port: 8080
+  tomcat:
+      uri-encoding: UTF-8
+      max-http-header-size: 8096
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
