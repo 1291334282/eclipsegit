@@ -49,12 +49,13 @@ public class LoginRegisterController {
 		Subject subject = SecurityUtils.getSubject();
 		UsernamePasswordToken token = new UsernamePasswordToken(name, password);
 		Map<String, Object> result = new HashMap<String, Object>();
+		
 		try {
+			subject.login(token);
 			if (userService.findByName(name).getUserstate().equals("注销")) {
-				result.put("status", "用户已注销");
+				result.put("status", "该用户已注销");
 				return result;
 			}
-			subject.login(token);
 			result.put("status", "登陆成功");
 			result.put("name", name);
 			result.put("userID", userService.findByName(name).getUserID());
