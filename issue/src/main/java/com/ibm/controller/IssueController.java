@@ -164,6 +164,10 @@ public class IssueController {
 		issue.setUserID(userID);
 		issue.setIssueID(issueID);
 		issue.setIssuestate(issuestate);
+		if (issueService.compareIssueidUserid(issue) == null) {
+			   result.put("status", "userID与IssueID不对应");
+			   return result;
+			  }
 		issueService.UpdateIssueState(issue);
 		result.put("status", "修改成功");
 		return result;

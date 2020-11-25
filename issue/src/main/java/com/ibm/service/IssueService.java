@@ -54,6 +54,11 @@ public class IssueService {
 	public void UpdateIssueState(Issue issue) {
 		issueMapper.UpdateIssueState(issue);
 	}
+	
+	 // issue创建人需验证修改：状态issuestate 报错
+	 public Issue compareIssueidUserid(Issue issue) {
+	  return issueMapper.compareIssueidUserid(issue);
+	 }
 
 	public List<IssueUser> findIssueAll() {
 		return issueMapper.findIssueAll();

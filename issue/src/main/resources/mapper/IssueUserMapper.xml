@@ -168,6 +168,12 @@
 		WHERE
 		userID=#{userID} AND issueID=#{issueID}
 	</update>
+	
+	 <!-- 比较issueID与userID是否对应 -->
+	 <select id="compareIssueidUserid" parameterType="com.ibm.entity.Issue"
+	  resultType="com.ibm.entity.Issue">
+	  SELECT * FROM issuetable WHERE userID=#{userID} AND issueID=#{issueID}
+	 </select>
 
 	<select id="findCreateIssue" parameterType="String"
 		resultType="com.ibm.entity.IssueUser">
