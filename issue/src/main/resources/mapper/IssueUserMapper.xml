@@ -11,19 +11,15 @@
 		u.userID,
 		u.name,
 		sum(i.creater = u.name) AS creation ,
-		sum(i.userID =
-		u.userID) AS
+		sum(i.userID = u.userID) AS
 		recived ,
-		sum(i.userID = u.userID and (i.issuestate =
-		'待验证')) AS
+		sum(i.userID = u.userID and (i.issuestate ='已关闭')) AS
 		resolved,
-		sum(i.creater = u.name and (i.issuestate =
-		'已关闭')) AS closed,
 		ifnull(
 		concat(
 		round(
-		sum(i.userID = u.userID and (i.issuestate =
-		'待验证'))
+		sum(i.userID = u.userID and (i.issuestate
+		='已关闭'))
 		/
 		sum(i.userID = u.userID)
 		*100),
@@ -41,22 +37,18 @@
 	<select id="issueIdOrName"
 		parameterType="com.ibm.entity.IssueUser"
 		resultType="com.ibm.entity.IssueUser">
-
 		select
 		u.userID,
 		u.name,
-		sum(i.creater =
-		u.name ) AS creation ,
-		sum(i.userID = u.userID ) AS recived ,
-		sum(i.userID =u.userID and
-		(i.issuestate = '待验证') ) AS resolved ,
-		sum(i.creater = u.name and
-		(i.issuestate = '已关闭') )AS closed ,
+		sum(i.creater = u.name) AS creation ,
+		sum(i.userID = u.userID) AS recived ,
+		sum(i.userID = u.userID and
+		(i.issuestate ='已关闭')) AS resolved,
 		ifnull(
 		concat(
 		round(
 		sum(i.userID =
-		u.userID and (i.issuestate = '待验证'))
+		u.userID and (i.issuestate ='已关闭'))
 		/
 		sum(i.userID = u.userID)
 		*100),
@@ -66,7 +58,7 @@
 		usertable u,issuetable i
 		<where>
 			<if test="userID != null and userID !=''">
-				AND u.userID = #{userID}
+				AND u.userID LIKE '%' #{userID} '%'
 			</if>
 			<if test="name != null and name !=''">
 				AND u.name LIKE '%' #{name} '%'
@@ -74,7 +66,6 @@
 			AND u.roleID = 0
 		</where>
 		GROUP BY u.userID
-
 	</select>
 
 	<select id="findByUserID" parameterType="int"
@@ -175,22 +166,25 @@
 		WHERE
 		userID=#{userID} AND issueID=#{issueID}
 	</update>
-	
+
 	<select id="findCreateIssue" parameterType="String"
 		resultType="com.ibm.entity.IssueUser">
-	SELECT
-	issueID,title,creater,createtime,`name`,issuestate,plantime,acttime
-	FROM issuetable,usertable
-	WHERE issuetable.userID=usertable.userID AND creater=#{creater}
-	ORDER BY createtime DESC
+		SELECT
+		issueID,title,creater,createtime,`name`,issuestate,plantime,acttime
+		FROM issuetable,usertable
+		WHERE issuetable.userID=usertable.userID AND
+		creater=#{creater}
+		ORDER BY createtime DESC
 	</select>
-	
+
 	<!-- issue模糊查询:登录用户的issue任务 -->
-	<select id="findLikeNewIssue" parameterType="com.ibm.entity.IssueUser"
+	<select id="findLikeNewIssue"
+		parameterType="com.ibm.entity.IssueUser"
 		resultType="com.ibm.entity.IssueUser">
-		SELECT 
+		SELECT
 		is1.issueID,is1.title,is1.creater,is1.createtime,usertable.name,is1.issuestate,is1.plantime,is1.acttime
-		FROM (SELECT * FROM issuetable WHERE creater=#{creater}) AS is1,usertable
+		FROM (SELECT * FROM issuetable WHERE creater=#{creater}) AS
+		is1,usertable
 		<where>
 			<if test="issueID != null and issueID !=''">
 				AND issueID = #{issueID}
@@ -202,16 +196,20 @@
 				AND name LIKE '%' #{name} '%'
 			</if>
 			<if test="createtime!= null and createtime !=''">
-				AND createtime <![CDATA[>=]]> #{createtime}
+				AND createtime <![CDATA[>=]]>
+				#{createtime}
 			</if>
 			<if test="createtime1 != null and createtime1 !=''">
-				AND createtime <![CDATA[<=]]> #{createtime1}
+				AND createtime <![CDATA[<=]]>
+				#{createtime1}
 			</if>
 			<if test="plantime != null and plantime !=''">
-				AND plantime <![CDATA[>=]]> #{plantime}
+				AND plantime <![CDATA[>=]]>
+				#{plantime}
 			</if>
 			<if test="plantime1 != null and plantime1 !=''">
-				AND plantime <![CDATA[<=]]> #{plantime1}
+				AND plantime <![CDATA[<=]]>
+				#{plantime1}
 			</if>
 			AND is1.userID=usertable.userID
 		</where>

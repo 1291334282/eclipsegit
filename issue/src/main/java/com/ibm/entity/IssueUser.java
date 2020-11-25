@@ -17,8 +17,6 @@ public class IssueUser extends Issue {
 	private Integer recived;
 	@ApiModelProperty("修改issue数")
 	private Integer resolved;
-	@ApiModelProperty("关闭issue数")
-	private Integer closed;
 	@ApiModelProperty("完成率")
 	private String completion;
 }
