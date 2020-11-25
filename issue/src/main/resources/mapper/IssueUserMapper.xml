@@ -58,12 +58,13 @@
 		usertable u,issuetable i
 		<where>
 			<if test="userID != null and userID !=''">
-				AND u.userID LIKE '%' #{userID} '%'
+				AND u.userID REGEXP #{userID}
 			</if>
 			<if test="name != null and name !=''">
-				AND u.name LIKE '%' #{name} '%'
+				AND u.name REGEXP #{name}
 			</if>
 			AND u.roleID = 0
+			AND u.userID=i.userID
 		</where>
 		GROUP BY u.userID
 	</select>
