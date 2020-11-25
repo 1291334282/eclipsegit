@@ -156,16 +156,15 @@ public class IssueController {
 
 	@ApiOperation("功能：修改issue状态")
 	@PostMapping("/updateIssueState")
-	public Map<String, Object> UpdateIssueState(@RequestParam(value = "userID", required = true) Integer userID,
+	public Map<String, Object> UpdateIssueState(
 			@RequestParam(value = "issueID", required = true) Integer issueID,
 			@RequestParam(value = "issuestate", required = true) String issuestate) {
 		Map<String, Object> result = new HashMap<String, Object>();
 		Issue issue = new Issue();
-		issue.setUserID(userID);
 		issue.setIssueID(issueID);
 		issue.setIssuestate(issuestate);
 		if (issueService.compareIssueidUserid(issue) == null) {
-			   result.put("status", "userID与IssueID不对应");
+			   result.put("status", "IssueID不存在");
 			   return result;
 			  }
 		issueService.UpdateIssueState(issue);

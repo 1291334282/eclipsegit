@@ -166,13 +166,13 @@
 		UPDATE issuetable
 		SET issuestate=#{issuestate}
 		WHERE
-		userID=#{userID} AND issueID=#{issueID}
+	    issueID=#{issueID}
 	</update>
 	
 	 <!-- 比较issueID与userID是否对应 -->
 	 <select id="compareIssueidUserid" parameterType="com.ibm.entity.Issue"
 	  resultType="com.ibm.entity.Issue">
-	  SELECT * FROM issuetable WHERE userID=#{userID} AND issueID=#{issueID}
+	  SELECT * FROM issuetable WHERE issueID=#{issueID}
 	 </select>
 
 	<select id="findCreateIssue" parameterType="String"
