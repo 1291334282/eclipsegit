@@ -129,16 +129,14 @@
 			#{createtime}
 		</if>
 		<if test="createtime1 != null and createtime1 !=''">
-			AND createtime <![CDATA[<=]]>
-			#{createtime1}
+			AND <![CDATA[  DATE_FORMAT(createtime, '%Y-%m-%d') <= DATE_FORMAT(#{createtime1}, '%Y-%m-%d')    ]]>
 		</if>
 		<if test="plantime != null and plantime !=''">
 			AND plantime <![CDATA[>=]]>
 			#{plantime}
 		</if>
 		<if test="plantime1 != null and plantime1 !=''">
-			AND plantime <![CDATA[<=]]>
-			#{plantime1}
+			 AND <![CDATA[  DATE_FORMAT(plantime, '%Y-%m-%d') <= DATE_FORMAT(#{plantime1}, '%Y-%m-%d')    ]]>
 		</if>
 		ORDER BY is1.createtime DESC
 	</select>
