@@ -121,13 +121,13 @@ public class IssueController {
 		PageInfo<IssueUser> pageInfo = new PageInfo<IssueUser>(issueService.findLikeIssue(issueUser));
 		return pageInfo;
 	}
-	@ApiOperation("功能：查询issue表全部")
-	@GetMapping("/selectIssueAll")
-	public PageInfo<IssueUser> findIssueAll(int pageNum, int pageSize) {
-		PageHelper.startPage(pageNum, pageSize);
-		PageInfo<IssueUser> pageInfo = new PageInfo<IssueUser>(issueService.findIssueAll());
-		return pageInfo;
-	}
+//	@ApiOperation("功能：查询issue表全部")
+//	@GetMapping("/selectIssueAll")
+//	public PageInfo<IssueUser> findIssueAll(int pageNum, int pageSize) {
+//		PageHelper.startPage(pageNum, pageSize);
+//		PageInfo<IssueUser> pageInfo = new PageInfo<IssueUser>(issueService.findIssueAll());
+//		return pageInfo;
+//	}
 
 	@ApiOperation("功能：修改issue信息")
 	@PostMapping("/updateIssue")
@@ -180,19 +180,19 @@ public class IssueController {
 		  return result;
 	}
 	
-	@ApiOperation("功能：显示登录用户创建的issue")
-	@GetMapping("/findCreateIssue")
-	public PageInfo<IssueUser> findCreateIssue(int pageNum, int pageSize, String creater) {
-		PageHelper.startPage(pageNum, pageSize);
-		PageInfo<IssueUser> pageInfo = new PageInfo<IssueUser>(issueService.findCreateIssue(creater));
-		return pageInfo;
-	}
+//	@ApiOperation("功能：显示登录用户创建的issue")
+//	@GetMapping("/findCreateIssue")
+//	public PageInfo<IssueUser> findCreateIssue(int pageNum, int pageSize, String creater) {
+//		PageHelper.startPage(pageNum, pageSize);
+//		PageInfo<IssueUser> pageInfo = new PageInfo<IssueUser>(issueService.findCreateIssue(creater));
+//		return pageInfo;
+//	}
 	
-	@ApiOperation("功能：模糊查询登录用户的新建issue")
-	@GetMapping("/findLikeNewIssue")
-	public PageInfo<IssueUser> findLikeNewIssue(int pageNum, int pageSize, @ApiParam("用户类对象") IssueUser issueUser) {
-		PageHelper.startPage(pageNum, pageSize);
-		PageInfo<IssueUser> pageInfo = new PageInfo<IssueUser>(issueService.findLikeNewIssue(issueUser));
-		return pageInfo;
-	}
+//	@ApiOperation("功能：模糊查询登录用户的新建issue")
+//	@GetMapping("/findLikeNewIssue")
+//	public PageInfo<IssueUser> findLikeNewIssue(int pageNum, int pageSize, @ApiParam("用户类对象") IssueUser issueUser) {
+//		PageHelper.startPage(pageNum, pageSize);
+//		PageInfo<IssueUser> pageInfo = new PageInfo<IssueUser>(issueService.findLikeNewIssue(issueUser));
+//		return pageInfo;
+//	}
 }
