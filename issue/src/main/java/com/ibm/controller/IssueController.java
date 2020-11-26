@@ -160,17 +160,24 @@ public class IssueController {
 	public Map<String, Object> UpdateIssueState(
 			@RequestParam(value = "issueID", required = true) Integer issueID,
 			@RequestParam(value = "issuestate", required = true) String issuestate) {
-		Map<String, Object> result = new HashMap<String, Object>();
-		Issue issue = new Issue();
-		issue.setIssueID(issueID);
-		issue.setIssuestate(issuestate);
-		if (issueService.compareIssueidUserid(issue) == null) {
-			   result.put("status", "IssueID不存在");
-			   return result;
-			  }
-		issueService.UpdateIssueState(issue);
-		result.put("status", "修改成功");
-		return result;
+		  Map<String, Object> result = new HashMap<String, Object>();
+		  SimpleDateFormat sformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 日期格式
+		  String time = sformat.format(new Date());
+		  Issue issue = new Issue();
+		  issue.setIssueID(issueID);
+		  issue.setIssuestate(issuestate);
+		  if (issueService.compareIssueidUserid(issue) == null) {
+		   result.put("status", "IssueID不存在");
+		   return result;
+		  }
+		  if (issue.getIssuestate().equals("已关闭")) {
+		   issue.setActtime(time);
+		  }
+		//  issue.setActtime(time);
+		  issueService.UpdateIssueState(issue);
+
+		  result.put("status", "修改成功");
+		  return result;
 	}
 	
 	@ApiOperation("功能：显示登录用户创建的issue")
