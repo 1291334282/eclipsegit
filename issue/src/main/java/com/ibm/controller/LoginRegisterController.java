@@ -36,11 +36,11 @@ public class LoginRegisterController {
 	@Autowired
 	private UserService userService;
 
-	@ApiOperation("功能：主页面")
-	@PostMapping("/main")
-	public User main() {
-		return new User();
-	}
+//	@ApiOperation("功能：主页面")
+//	@PostMapping("/main")
+//	public User main() {
+//		return new User();
+//	}
 
 	@ApiOperation("功能：登陆接口")
 	@PostMapping("/login")
@@ -69,13 +69,13 @@ public class LoginRegisterController {
 
 	}
 
-	@ApiOperation("功能：未授权的网页跳转")
-	@GetMapping("/unauth")
-	public Map<String, Object> unauth() {
-		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("status", "未授权，无法访问");
-		return result;
-	}
+//	@ApiOperation("功能：未授权的网页跳转")
+//	@GetMapping("/unauth")
+//	public Map<String, Object> unauth() {
+//		Map<String, Object> result = new HashMap<String, Object>();
+//		result.put("status", "未授权，无法访问");
+//		return result;
+//	}
 
 	@ApiOperation("功能：退出登录")
 	@GetMapping("/logout")
