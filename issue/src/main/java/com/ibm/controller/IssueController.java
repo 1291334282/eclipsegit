@@ -41,16 +41,16 @@ public class IssueController {
 	@Autowired
 	private IssueService issueService;
 
-	@ApiOperation("功能：查看报表")
-	@GetMapping("/selectissuecount")
-	public PageInfo<Issue> issueCount(int pageNum, int pageSize) {
-		PageHelper.startPage(pageNum, pageSize);
-		PageInfo<Issue> pageInfo = new PageInfo<Issue>(issueService.issueCount());
-//		if (pageInfo.getList().isEmpty()) {
-//			model.addAttribute("selectmsg", "查询不到");
-//		}
-		return pageInfo;
-	}
+//	@ApiOperation("功能：查看报表")
+//	@GetMapping("/selectissuecount")
+//	public PageInfo<Issue> issueCount(int pageNum, int pageSize) {
+//		PageHelper.startPage(pageNum, pageSize);
+//		PageInfo<Issue> pageInfo = new PageInfo<Issue>(issueService.issueCount());
+////		if (pageInfo.getList().isEmpty()) {
+////			model.addAttribute("selectmsg", "查询不到");
+////		}
+//		return pageInfo;
+//	}
 
 	@ApiOperation("功能：查询用户id或名字的issue")
 	@GetMapping("/selectissuebyidorname")

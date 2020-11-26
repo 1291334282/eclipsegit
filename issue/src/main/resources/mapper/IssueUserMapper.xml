@@ -64,7 +64,6 @@
 				AND u.name REGEXP #{name}
 			</if>
 			AND u.roleID = 0
-			AND u.userID=i.userID
 		</where>
 		GROUP BY u.userID
 	</select>
