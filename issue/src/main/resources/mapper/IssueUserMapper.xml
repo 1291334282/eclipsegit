@@ -104,7 +104,7 @@
 		parameterType="com.ibm.entity.IssueUser"
 		resultType="com.ibm.entity.IssueUser">
 		SELECT
-		is1.issueID,is1.title,is1.creater,is1.createtime,u.name,is1.issuestate,is1.plantime,is1.acttime,solution
+		is1.issueID,is1.title,is1.creater,is1.createtime,u.name,is1.issuestate,is1.plantime,is1.acttime,solution,level
 		FROM issuetable is1,usertable u
 		WHERE
 		is1.userID=u.userID
