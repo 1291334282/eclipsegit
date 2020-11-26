@@ -155,7 +155,7 @@
 	<update id="UpdateIssueSolution"
 		parameterType="com.ibm.entity.Issue">
 		UPDATE issuetable
-		SET solution=#{solution}
+		SET issuestate=#{issuestate},solution=#{solution}
 		WHERE
 		userID=#{userID} AND issueID=#{issueID}
 	</update>

@@ -148,6 +148,7 @@ public class IssueController {
 		Issue issue = new Issue();
 		issue.setUserID(userID);
 		issue.setIssueID(issueID);
+		issue.setIssuestate("待验证");
 		issue.setSolution(solution);
 		issueService.UpdateIssueSolution(issue);
 		result.put("status", "修改成功");
