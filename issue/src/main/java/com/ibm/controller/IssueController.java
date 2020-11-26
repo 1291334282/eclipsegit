@@ -129,15 +129,15 @@ public class IssueController {
 //		return pageInfo;
 //	}
 
-	@ApiOperation("功能：修改issue信息")
-	@PostMapping("/updateIssue")
-	public Map<String, Object> updateUser(@ApiParam("Issue类对象") Issue issue) {
-		Map<String, Object> result = new HashMap<String, Object>();
-		issue.setIssuestate("待验证");
-		issueService.UpdateIssue(issue);
-		result.put("status", "修改成功");
-		return result;
-	}
+//	@ApiOperation("功能：修改issue信息")
+//	@PostMapping("/updateIssue")
+//	public Map<String, Object> updateUser(@ApiParam("Issue类对象") Issue issue) {
+//		Map<String, Object> result = new HashMap<String, Object>();
+//		issue.setIssuestate("待验证");
+//		issueService.UpdateIssue(issue);
+//		result.put("status", "修改成功");
+//		return result;
+//	}
 
 	@ApiOperation("功能：修改issue解决方案solution")
 	@PostMapping("/updateUserSolution")
