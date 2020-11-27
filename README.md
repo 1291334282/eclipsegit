@@ -4,7 +4,12 @@ issue管理系统
 运行方式：
 导入sql文件
 
+启动后端：
 cmd进入target文件输入命令：java -jar issue.jar
+启动前端：
+cmd进入前端项目文件qiuqi_web
+输入命令：npm install
+运行：npm run serve
 
 超级管理员：
 账号：Admin
