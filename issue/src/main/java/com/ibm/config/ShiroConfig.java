@@ -3,6 +3,7 @@ package com.ibm.config;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -46,7 +47,19 @@ public class ShiroConfig {
 	 */
 	@Bean(name="userRealm")
 	public UserRealm getRealm() {
-		return new UserRealm();
+		UserRealm authRealm=new UserRealm();
+//		authRealm.setAuthorizationCachingEnabled(false);
+//		authRealm.setCredentialsMatcher(matcher);
+		return authRealm;
 	}
-
+//	@Bean("hashedCredentialsMatcher")
+//	public HashedCredentialsMatcher hashedCredentialsMatcher() {
+//	HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
+//	//指定加密方式为MD5
+//	credentialsMatcher.setHashAlgorithmName("MD5");
+//	//加密次数
+//	credentialsMatcher.setHashIterations(1024);
+//	credentialsMatcher.setStoredCredentialsHexEncoded(true);
+//	return credentialsMatcher;
+//	}
 }
